@@ -1,0 +1,27 @@
+﻿{% extends "bootstrap/base.html" %}
+{% block head %}
+    {{ ckeditor.load() }}
+    {{ super() }}
+{% endblock head %}
+
+{% block title %}
+Blog
+{% endblock title %}
+
+{% block navbar %}
+    {% include "_navbar.html" %}
+{% endblock navbar %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul>
+            {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+{% endwith %}
+    {% block sub_content %}
+    {% endblock sub_content %}
+{% endblock content %}
